@@ -1,16 +1,16 @@
 ﻿using System;
-using SystemWrapper.IO;
+using SystemInterface.IO;
 
 namespace AddressProcessing.CSV
 {
     public class CsvReader : ICsvReader
     {
-        private readonly IFileWrap _fileWrap;
-        private IStreamReaderWrap _streamReaderWrapper;
+        private readonly IFile _fileWrap;
+        private IStreamReader _streamReaderWrapper;
         
         public string[] LinesReadFromFile { get; private set; }
 
-        public CsvReader(IFileWrap fileWrap)
+        public CsvReader(IFile fileWrap)
         {
             _fileWrap = fileWrap;
         }

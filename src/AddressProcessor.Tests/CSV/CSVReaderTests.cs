@@ -1,4 +1,5 @@
 ﻿using SystemWrapper.IO;
+using SystemInterface.IO;
 using AddressProcessing.CSV;
 using Moq;
 using NUnit.Framework;
@@ -15,8 +16,8 @@ namespace AddressProcessing.Tests.CSV
         [Test]
         public void Test_Read_ReadsFirstLineFromFile_ForValidFile()
         {
-            var fileWrap = new Mock<IFileWrap>();
-            var streamWriterWrap = new Mock<IStreamReaderWrap>();
+            var fileWrap = new Mock<IFile>();
+            var streamWriterWrap = new Mock<IStreamReader>();
             fileWrap.Setup(x => x.OpenText(TestInputFile)).Returns(streamWriterWrap.Object);
             streamWriterWrap.Setup(x => x.ReadLine()).Returns("Shelby Macias	3027 Lorem St.|Kokomo");
 
@@ -34,8 +35,8 @@ namespace AddressProcessing.Tests.CSV
         public void Test_Dispose_StreamReaderDisposeIsCalled()
         {
 
-            var fileWrap = new Mock<IFileWrap>();
-            var streamWriterWrap = new Mock<IStreamReaderWrap>();
+            var fileWrap = new Mock<IFile>();
+            var streamWriterWrap = new Mock<IStreamReader>();
             fileWrap.Setup(x => x.OpenText(TestInputFile)).Returns(streamWriterWrap.Object);
             streamWriterWrap.Setup(x => x.ReadLine()).Returns("Shelby Macias	3027 Lorem St.|Kokomo");
 
